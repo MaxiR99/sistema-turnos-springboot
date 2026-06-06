@@ -6,6 +6,7 @@ import com.todocode.practice.turnos.model.Turno;
 import com.todocode.practice.turnos.service.TurnoService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import com.todocode.practice.turnos.dto.TurnoResponseDTO;
 
 import java.util.List;
 
@@ -44,4 +45,29 @@ public class TurnoController {
                                  @RequestBody Turno turno){
         return turnoService.actualizarTurno(id, turno);
     }
+
+    @GetMapping("/dto/{id}")
+    public TurnoResponseDTO obtenerTurnoDTO(
+            @PathVariable Long id){
+
+        Turno turno = turnoService.buscarTurno(id);
+
+        return turnoService.convertirDTO(turno);
+    }
+
+    @GetMapping("/profesional/{id}")
+    public List<Turno> buscarPorProfesional(
+            @PathVariable Long id){
+
+        return turnoService.buscarPorProfesional(id);
+    }
+
+    @GetMapping("/paciente/{id}")
+    public List<Turno> buscarPorPaciente(
+            @PathVariable Long id){
+
+        return turnoService.buscarPorPaciente(id);
+    }
+
+
 }

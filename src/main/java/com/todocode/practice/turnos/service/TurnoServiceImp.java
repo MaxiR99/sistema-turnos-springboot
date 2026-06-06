@@ -1,5 +1,6 @@
 package com.todocode.practice.turnos.service;
 
+import com.todocode.practice.turnos.dto.TurnoResponseDTO;
 import com.todocode.practice.turnos.exception.TurnoDuplicadoException;
 import com.todocode.practice.turnos.model.Turno;
 import com.todocode.practice.turnos.repository.TurnoRepository;
@@ -63,4 +64,33 @@ public class TurnoServiceImp implements  TurnoService{
         return null;
 
     }
+    public TurnoResponseDTO convertirDTO(Turno turno){
+
+        TurnoResponseDTO dto = new TurnoResponseDTO();
+
+        dto.setId(turno.getId());
+        dto.setFecha(turno.getFecha());
+        dto.setHora(turno.getHora());
+
+        dto.setPacienteNombre(
+                turno.getPaciente().getNombre()
+        );
+
+        dto.setProfesionalNombre(
+                turno.getProfesional().getNombre()
+        );
+
+        return dto;
+    }
+
+    @Override
+    public List<Turno> buscarPorProfesional(Long profesionalId) {
+        return turnoRepository.findByProfesionalId(profesionalId);
+    }
+
+    @Override
+    public List<Turno> buscarPorPaciente(Long pacienteId) {
+        return turnoRepository.findByPacienteId(pacienteId);
+    }
+
 }
