@@ -42,5 +42,5 @@ POST /turnos
 PUT /turnos/{id}
 DELETE /turnos/{id}
 
-GET /turnos/profesional/{id}
-GET /turnos/paciente/{id}
+GET/turnos/profesional/{id}
+GET/turnos/paciente/{id}
