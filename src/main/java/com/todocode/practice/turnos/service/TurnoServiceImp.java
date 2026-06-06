@@ -1,5 +1,6 @@
 package com.todocode.practice.turnos.service;
 
+import com.todocode.practice.turnos.exception.TurnoDuplicadoException;
 import com.todocode.practice.turnos.model.Turno;
 import com.todocode.practice.turnos.repository.TurnoRepository;
 import com.todocode.practice.turnos.service.TurnoService;
@@ -25,7 +26,7 @@ public class TurnoServiceImp implements  TurnoService{
                 turno.getFecha(),
                 turno.getHora())) {
 
-            throw new RuntimeException(
+            throw new TurnoDuplicadoException(
                     "El profesional ya tiene un turno en ese horario");
         }
         return turnoRepository.save(turno);

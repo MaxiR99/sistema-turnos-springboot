@@ -4,6 +4,7 @@ package com.todocode.practice.turnos.controller;
 
 import com.todocode.practice.turnos.model.Turno;
 import com.todocode.practice.turnos.service.TurnoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class TurnoController {
     }
 
     @PostMapping
-    public Turno crearTurno(@RequestBody Turno turno) {
+    public Turno crearTurno(@Valid @RequestBody Turno turno) {
         return turnoService.crearTurno(turno);
     }
 
